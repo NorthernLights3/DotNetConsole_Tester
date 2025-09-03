@@ -38,4 +38,5 @@ NumObj FindLargestOccurance()
 var obj = FindLargestOccurance();
 Console.WriteLine($"Number {obj.Number} occurs {obj.Occurances} times.");
 
-await Fabricator.GetProductsAsync();
+var results = await Fabricator.GetProductsAsync();
+Console.WriteLine(string.Join(Environment.NewLine, results.Select(p => p.Name)));
