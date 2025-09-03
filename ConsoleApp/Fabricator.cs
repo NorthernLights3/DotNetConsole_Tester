@@ -9,4 +9,11 @@ public static class Fabricator
             _ => throw new ArgumentException("Invalid product type"),
         };
     }
+
+    public static async Task<List<IProduct>> GetProductsAsync()
+    {
+        // Simulate an asynchronous operation
+        await Task.Delay(1000);
+        return new List<IProduct>() { CreateProduct("A"), CreateProduct("B"), CreateProduct("B"), CreateProduct("A"), CreateProduct("A") };
+    }
 }
