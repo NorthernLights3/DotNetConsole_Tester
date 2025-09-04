@@ -13,7 +13,7 @@ public static class Fabricator
     public static async Task<List<IProduct>> GetProductsAsync()
     {
         // Simulate an asynchronous operation
-        await Task.Delay(1000);
+        await Task.Delay(15);
         return new List<IProduct>() { CreateProduct("A"), CreateProduct("B"), CreateProduct("B"), CreateProduct("A"), CreateProduct("A") };
     }
 }

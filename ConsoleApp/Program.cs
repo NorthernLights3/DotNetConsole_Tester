@@ -40,3 +40,41 @@ Console.WriteLine($"Number {obj.Number} occurs {obj.Occurances} times.");
 
 var results = await Fabricator.GetProductsAsync();
 Console.WriteLine(string.Join(Environment.NewLine, results.Select(p => p.Name)));
+
+int[] input = [10, 6, 8, 5, 9, 7];
+
+List<HeightObj> AnalyzeArray(int[] arr)
+{
+    var result = new List<HeightObj>();
+
+    for (int i = arr.Length - 1; i >= 0; --i)
+    {
+        var hObj = new HeightObj { VisibleCount = 0, LowCount = 0 };
+        hObj.Number = arr[i];
+        var pObj = result.FirstOrDefault();
+        result.Insert(0, hObj);
+
+        if (i < arr.Length - 1)
+        {
+            hObj.VisibleCount = 1;
+
+            if (arr[i] < arr[i + 1])
+            {
+                hObj.VisibleCount += pObj.VisibleCount;
+            }
+            else
+            {
+                hObj.VisibleCount = pObj.VisibleCount;
+                hObj.LowCount = 1;
+            }
+        }
+    }
+
+    return result.ToList();
+}
+
+var result = AnalyzeArray(input);
+foreach (var item in result)
+{
+    Console.WriteLine($"Number: {item.Number}, Visible: {item.VisibleCount}, Low: {item.LowCount}, Total: {item.Count}");
+}
